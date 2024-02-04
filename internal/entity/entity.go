@@ -25,3 +25,27 @@ func (o *OrderRequest) Validate() error {
 
 // Processing business rule
 
+func (o *OrderRequest) Process() (*OrderResponse, error) {
+	if err := o.Validate(); err != nil {
+		return nil, err
+	}
+	orderResponse := NewOrderResponse(o.OrderID, "failed")
+	// rule, if total is less than 100.00, set status as paid
+	if o.Total < 100.00 {
+		orderResponse.Status = "paid"
+	}
+	return orderResponse, nil
+}
+
+// Response for Order
+type OrderResponse struct {
+	OrderID string `json:"order_id"`
+	Status  string `json:"status"` // types of the status: paid, failed
+}
+
+func NewOrderResponse(orderID, status string) *OrderResponse {
+	return &OrderResponse{
+		OrderID: orderID,
+		Status:  status,
+	}
+}
