@@ -4,4 +4,4 @@
 * Developed in Go
 
 
-By: Daiana Eger Michels - 2024 - Full Stack && Full Cycle
+By: Daiana Eger Michels - 2024 - Immersion Full Stack && Full Cycle
